@@ -599,7 +599,7 @@ if [[ "${showUnsupportedNICs}" == true ]]; then
 	availableInterfaces=$(ip -o link | awk '{print $2}' | cut -d':' -f1 | cut -d'@' -f1 | grep -v -w 'lo')
 else
 	# Find network interfaces whose state is UP, so as to skip virtual interfaces and the loopback interface
-	availableInterfaces=$(ip -o link | awk '/state UP/ {print $2}' | cut -d':' -f1 | cut -d'@' -f1)
+	availableInterfaces=$(ip -o link | awk '/state UNKNOWN/ {print $2}' | cut -d':' -f1 | cut -d'@' -f1)
 fi
 
 if [ -z "$availableInterfaces" ]; then
